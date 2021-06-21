@@ -1,0 +1,89 @@
+<html>
+<head>
+<title>SalaryCalculator.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+.s4 { color: #808080;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SalaryCalculator.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">employee</span><span class="s0">;</span>
+
+<span class="s0">import </span><span class="s1">java.io.*</span><span class="s0">;</span>
+
+<span class="s0">public class </span><span class="s1">SalaryCalculator {</span>
+
+    <span class="s0">public static void </span><span class="s1">main(String arg[]) {</span>
+    <span class="s1">String path = </span><span class="s2">&quot;/Users/jaylinjacobs/IdeaProjects/SalaryCalculator/src/employee/salary.txt&quot;</span><span class="s0">;</span>
+    <span class="s1">String line</span><span class="s0">;</span>
+    <span class="s0">double </span><span class="s1">totalSalary</span><span class="s0">;</span>
+    <span class="s0">int </span><span class="s1">bonus = </span><span class="s3">10000</span><span class="s0">;</span>
+
+
+        <span class="s0">try </span><span class="s1">{</span>
+            <span class="s4">//read file</span>
+            <span class="s1">BufferedReader br = </span><span class="s0">new </span><span class="s1">BufferedReader(</span><span class="s0">new </span><span class="s1">FileReader(path))</span><span class="s0">;</span>
+
+            <span class="s4">//loop through csv file</span>
+            <span class="s0">while</span><span class="s1">((line = br.readLine()) != </span><span class="s0">null</span><span class="s1">){</span>
+
+                <span class="s4">//split csv data into values</span>
+                <span class="s1">String[] values = line.split(</span><span class="s2">&quot;,&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+                <span class="s4">//convert csv data</span>
+                <span class="s1">Double dblRate = Double.parseDouble(values[</span><span class="s3">1</span><span class="s1">])</span><span class="s0">;</span>
+                <span class="s1">Double dblHours = Double.parseDouble(values[</span><span class="s3">2</span><span class="s1">])</span><span class="s0">;</span>
+                <span class="s1">String role = values[</span><span class="s3">3</span><span class="s1">]</span><span class="s0">;</span>
+
+                <span class="s4">//set conditions for specific roles and print output</span>
+                <span class="s0">if </span><span class="s1">(role.equals(</span><span class="s2">&quot;CONTRACT&quot;</span><span class="s1">)){</span>
+
+                    <span class="s1">totalSalary =  bonus + (dblHours * dblRate)</span><span class="s0">;</span>
+                    <span class="s1">System.out.println(line)</span><span class="s0">;</span>
+                    <span class="s1">System.out.println(</span><span class="s2">&quot;Total salary is: $&quot;</span><span class="s1">+ totalSalary)</span><span class="s0">;</span>
+
+                <span class="s1">} </span><span class="s0">else if </span><span class="s1">(role.equals(</span><span class="s2">&quot;FULL TIME&quot;</span><span class="s1">)){</span>
+
+                    <span class="s1">totalSalary = dblHours * dblRate</span><span class="s0">;</span>
+                    <span class="s1">System.out.println(line)</span><span class="s0">;</span>
+                    <span class="s1">System.out.println(</span><span class="s2">&quot;Total salary is: $&quot;</span><span class="s1">+ totalSalary)</span><span class="s0">;</span>
+
+                <span class="s1">} </span><span class="s0">else if</span><span class="s1">(role.equals(</span><span class="s2">&quot;PART TIME&quot;</span><span class="s1">)){</span>
+
+                    <span class="s1">totalSalary = dblHours * dblRate</span><span class="s0">;</span>
+                    <span class="s1">System.out.println(line)</span><span class="s0">;</span>
+
+                    <span class="s0">if</span><span class="s1">(totalSalary &gt; </span><span class="s3">50000</span><span class="s1">){</span>
+
+                        <span class="s1">System.out.println(</span><span class="s2">&quot;Total salary is capped at $50000&quot;</span><span class="s1">)</span><span class="s0">;</span>
+
+                    <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+
+                        <span class="s1">System.out.println(</span><span class="s2">&quot;Total salary is: $&quot;</span><span class="s1">+ totalSalary)</span><span class="s0">;</span>
+
+                    <span class="s1">}</span>
+
+                <span class="s1">}</span>
+            <span class="s1">}</span>
+
+        <span class="s4">//if something goes wrong do this</span>
+        <span class="s1">} </span><span class="s0">catch </span><span class="s1">(FileNotFoundException e) {</span>
+            <span class="s1">e.printStackTrace()</span><span class="s0">;</span>
+        <span class="s1">}</span><span class="s0">catch </span><span class="s1">(IOException e) {</span>
+            <span class="s1">e.printStackTrace()</span><span class="s0">;</span>
+        <span class="s1">}</span>
+
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>
